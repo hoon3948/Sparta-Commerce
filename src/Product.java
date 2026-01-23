@@ -16,7 +16,7 @@ public class Product {
             System.out.println("재고가 없습니다.");
         }
         else {
-            System.out.println(name + "  |  " + price + "  |  " + information);
+            System.out.println(name + "     |   " + price + "원   |   " + information);
         }
     }
 
