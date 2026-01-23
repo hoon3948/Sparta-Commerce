@@ -14,10 +14,12 @@ public class CommerceSystem {
 
     public void start(){
         Scanner sc = new Scanner(System.in);
-        int input1 = 1;
-        int input2 = 1;
-        while(input1 != 0) {
+        int input1 = -1;
+
+        while(true) {
             count = 1;
+            int input2 = -1;
+            // 제품 조회 반복을 위해서 초기화
             String forCategoryName = " ";
 
             System.out.println("[ 실시간 커머스 플랫폼 메인 ]");
@@ -28,7 +30,13 @@ public class CommerceSystem {
             }
             System.out.println("0. 종료   |   프로그램 종료");
             input1 = sc.nextInt();
+            System.out.println();
+            // 가시성 위해서 공백 한줄 추가
 
+            if(input1 == 0) {
+                break;
+            }
+            // 반복문 탈출
 
             while(input2 != 0){
                 count = 1;
@@ -40,7 +48,7 @@ public class CommerceSystem {
                     default -> throw new IllegalArgumentException("존재하지 않는 항목입니다.");
                 }
 
-                System.out.println(forCategoryName);
+                System.out.println("[ " + forCategoryName + " 카테고리 ]");
                 for(Category ex : categories){
                     if(ex.getCategoryName().equals(forCategoryName)){
                         for (Product product : ex.getProducts()) {
@@ -48,11 +56,16 @@ public class CommerceSystem {
                             product.printProductInfo();
                         }
                         System.out.println("0. 뒤로가기");
+
+                        input2 = sc.nextInt();
+                        if(input2 > 0 && input2 <= ex.getProducts().size()){
+                            Product selectedProduct = ex.getProducts().get(input2 - 1);
+                            selectedProduct.printSelectedProduct();
+                        }
+
                     }
                 }
-
-                input2 = sc.nextInt();
-
+//                throw new IllegalArgumentException("존재하지 않는 항목입니다.");
             }
 
 
@@ -61,7 +74,6 @@ public class CommerceSystem {
         System.out.println("커머스 플랫폼을 종료합니다.");
         sc.close();
     }
-
 //    public void manageProduct(Category category){
 //
 //    }

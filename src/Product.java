@@ -12,12 +12,15 @@ public class Product {
     }
 
     void printProductInfo(){
-        if(stock <= 0){
-            System.out.println("재고가 없습니다.");
-        }
-        else {
+//        if(stock <= 0){
+//            System.out.println("재고가 없습니다.");
+//        }
+//        else {
             System.out.println(name + "     |   " + price + "원   |   " + information);
-        }
+//        }
     }
 
+    void printSelectedProduct(){
+        System.out.println("선택한 상품: " + name + "    |   " + price + "원   |   " + information + "   | 재고: " + stock);
+    }
 }
