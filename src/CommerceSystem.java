@@ -1,33 +1,68 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CommerceSystem {
-    private final List<Product> products;
-    public CommerceSystem(List<Product> products) {
-        this.products = products;
-    }
+    private int count = 1;
+    Category category;
+    private List<Category> categories;
 
+
+
+    public CommerceSystem(List<Category> categories) {
+        this.categories = categories;
+    }
 
     public void start(){
-
         Scanner sc = new Scanner(System.in);
+        int input1 = 1;
+        int input2 = 1;
+        while(input1 != 0) {
+            count = 1;
+            String forCategoryName = " ";
 
-        // 메뉴 출력
-        int count = 1;
-        for (Product product : products) {
-            System.out.print( count++ + ". ");
-            product.printInfo();
-        }
-        System.out.println("0. 종료   |   프로그램 종료");
-        int ans = sc.nextInt();
-        if (ans == 0){
-            System.out.println("커머스 플랫폼을 종료합니다.");
+            System.out.println("[ 실시간 커머스 플랫폼 메인 ]");
+            // 메뉴 출력
+            for (Category categories : categories) {
+                System.out.print(count++ + ". ");
+                categories.printCategoryInfo();
+            }
+            System.out.println("0. 종료   |   프로그램 종료");
+            input1 = sc.nextInt();
+
+
+            while(input2 != 0){
+                count = 1;
+
+                switch (input1){
+                    case(1) -> forCategoryName = "전자제품";
+                    case(2) -> forCategoryName = "의류";
+                    case(3) -> forCategoryName = "식품";
+                    default -> throw new IllegalArgumentException("존재하지 않는 항목입니다.");
+                }
+
+                System.out.println(forCategoryName);
+                for(Category ex : categories){
+                    if(ex.getCategoryName().equals(forCategoryName)){
+                        for (Product product : ex.getProducts()) {
+                            System.out.print( count++ + ". ");
+                            product.printProductInfo();
+                        }
+                        System.out.println("0. 뒤로가기");
+                    }
+                }
+
+                input2 = sc.nextInt();
+
+            }
+
+
         }
 
+        System.out.println("커머스 플랫폼을 종료합니다.");
+        sc.close();
     }
 
-    void manageProduct(){
-
-    }
+//    public void manageProduct(Category category){
+//
+//    }
 }

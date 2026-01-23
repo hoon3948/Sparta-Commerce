@@ -11,7 +11,7 @@ public class Product {
         this.stock = stock;
     }
 
-    void printInfo(){
+    void printProductInfo(){
         if(stock <= 0){
             System.out.println("재고가 없습니다.");
         }
