@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class CommerceSystem {
     private int count = 1;
-    Category category;
+//    Category category;
     private List<Category> categories;
 
 
@@ -61,6 +61,7 @@ public class CommerceSystem {
                         if(input2 > 0 && input2 <= ex.getProducts().size()){
                             Product selectedProduct = ex.getProducts().get(input2 - 1);
                             selectedProduct.printSelectedProduct();
+                            System.out.println();
                         }
 
                     }
@@ -69,6 +70,19 @@ public class CommerceSystem {
             }
 
 
+        }
+
+        System.out.print("이름: ");
+        String name = sc.next();
+        System.out.print("이메일: ");
+        String email = sc.next();
+        System.out.print("금액: ");
+        int amount = sc.nextInt();
+        if(amount>=0) {
+            Customer customer = new Customer(name, email, amount);
+            customer.printCustomerInfo();
+        }else{
+            throw new IllegalArgumentException("금액이 잘못 입력 되었습니다.");
         }
 
         System.out.println("커머스 플랫폼을 종료합니다.");

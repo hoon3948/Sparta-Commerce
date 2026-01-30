@@ -7,39 +7,17 @@ public class Customer {
     public Customer(String customerName,String customerEmail, int orderAmount){
         this.customerName = customerName;
         this.customerEmail = customerEmail;
-        this.customerRating = gradeRating();
         this.orderAmount = orderAmount;
+        this.customerRating = gradeRating();
     }
 
     private String gradeRating(){
-        if(orderAmount<500000){
-            this.customerRating = "Bronze";
-        }
-        else if(orderAmount >= 500000 && orderAmount < 1000000){
-            this.customerRating = "Silver";
-        }
-        else if (orderAmount >= 1000000 && orderAmount < 2000000){
-            this.customerRating = "Gold";
-        }
-        else if(orderAmount >= 2000000) {
-            this.customerRating = "Platinum";
-        }
+        Rank rank = Rank.fromAmount(orderAmount);
+        return customerRating = rank.getName();
     }
 
-    public String getCustomerName(){
-        return customerName;
-    }
-    public String getCustomerEmail(){
-        return customerEmail;
-    }
-    public String getCustomerRating(){
-        return customerRating;
-    }
-    public int getOrderAmount(){
-        return orderAmount;
-    }
 
     void printCustomerInfo(){
-        System.out.println("고객이름: " + customerName + "고객이메일: " + customerEmail + "고객등급: " + customerRating + "누적금액: " + orderAmount);
+        System.out.println("고객이름: " + customerName + " 고객이메일: " + customerEmail + " 누적금액: " + orderAmount + " 고객등급: " + customerRating );
     }
 }
